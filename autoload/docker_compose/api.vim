@@ -40,15 +40,21 @@ endfunction
 
 " tail logs
 function! docker_compose#api#logs(...) abort
-    let compose_file = 'docker-compose.yaml'
-    if a:0 == 1
-       let compose_file = a:1
-    endif
-
+    let compose_file = docker_compose#api#compose_file(a:000)
     if !docker_compose#utils#check#filereadable(compose_file)
         return
     endif
     call docker_compose#api#terminal('-f', compose_file, 'logs')
+endfunction
+
+function! docker_compose#api#compose_file(...) abort
+    let args = a:1
+    let compose_file = 'docker-compose.yaml'
+    if len(args) is# 1
+       let compose_file = args[0]
+    endif
+
+    return compose_file
 endfunction
 
 let &cpo = s:save_cpo
