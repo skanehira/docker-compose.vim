@@ -10,6 +10,7 @@ function! docker_compose#api#execute(...) abort
     " TODO use job to execute docker-compose
 endfunction
 
+" execute docker-compose in the terminal
 function! docker_compose#api#terminal(...) abort
 	if a:0 == 0
 		call docker_compose#utils#message#echoerr('there are no args')
