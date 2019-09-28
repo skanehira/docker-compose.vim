@@ -5,9 +5,18 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
+let s:base_cmd = 'docker-compose '
+
 " wrap docker-compose command
-function! docker_compose#api#execute(...) abort
-    " TODO use job to execute docker-compose
+function! docker_compose#api#execute(args) abort
+    let cmd = s:base_cmd .. a:args
+    let out = systemlist(cmd)
+    if v:shell_error == 0
+        call docker_compose#utils#message#echoerr('failed to execute ' .. cmd)
+        return ''
+    endif
+
+    return out
 endfunction
 
 " execute docker-compose in the terminal
