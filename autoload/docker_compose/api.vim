@@ -26,7 +26,7 @@ function! docker_compose#api#terminal(...) abort
     endif
 
     execute 'terminal docker-compose ' .. join(a:000, ' ')
-    nnoremap <silent>q :bw!<CR>
+    nnoremap <buffer> <silent>q :bw!<CR>
 endfunction
 
 let &cpo = s:save_cpo
