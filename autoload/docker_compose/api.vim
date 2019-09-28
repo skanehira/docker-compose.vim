@@ -43,15 +43,6 @@ function! docker_compose#api#terminal(...) abort
     nnoremap <buffer> <silent>q :bw!<CR>
 endfunction
 
-" tail logs
-function! docker_compose#api#logs(...) abort
-    let compose_file = docker_compose#api#compose_file(a:000)
-    if !docker_compose#utils#check#filereadable(compose_file)
-        return
-    endif
-    call docker_compose#api#terminal('-f', compose_file, 'logs')
-endfunction
-
 function! docker_compose#api#compose_file(...) abort
     let args = a:1
     let compose_file = 'docker-compose.yaml'

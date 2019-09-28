@@ -33,6 +33,14 @@ function! docker_compose#command#ps(...) abort
 	call docker_compose#utils#window#create(ctx)
 endfunction
 
+" monitoring logs
+function! docker_compose#command#logs(...) abort
+    let compose_file = docker_compose#api#compose_file(a:000)
+    if !docker_compose#utils#check#filereadable(compose_file)
+        return
+    endif
+    call docker_compose#api#terminal('-f', compose_file, 'logs')
+endfunction
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
