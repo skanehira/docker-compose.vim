@@ -65,6 +65,12 @@ COMMANDS					*docker-compose-commands*
 	If {file} is no specified, the plugin will find
 	docker-compose.yaml from the current directory and use it.
 
+:DockerComposeList {file}			*:DockerComposeList*
+	Show containers.
+	This is same as `docker-compose ps -f {file}`
+	If {file} is no specified, the plugin will find
+	docker-compose.yaml from the current directory and use it.
+
 ------------------------------------------------------------------------------
 KEY-MAPPINGS					*docker-compose-key-mappings*
 
