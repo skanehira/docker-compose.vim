@@ -22,5 +22,10 @@ containers
 :DockerComposeList {file}
 ```
 
+monitoring logs
+```vim
+:DockerComposeLogs {file}
+```
+
 # Author
 skanehira
