@@ -6,21 +6,21 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 " wrap docker-compose command
-function! docker#compose#api#execute(...) abort
+function! docker_compose#api#execute(...) abort
     " TODO use job to execute docker-compose
 endfunction
 
-function! docker#compose#api#terminal(...) abort
+function! docker_compose#api#terminal(...) abort
 	if a:0 == 0
-		call docker#compose#utils#message#echoerr('there are no args')
+		call docker_compose#utils#message#echoerr('there are no args')
         return
 	endif
 
-    if !docker#compose#utils#check#has('terminal')
+    if !docker_compose#utils#check#has('terminal')
         return
     endif
 
-    if !docker#compose#utils#check#executable('docker-compose')
+    if !docker_compose#utils#check#executable('docker-compose')
         return
     endif
 
