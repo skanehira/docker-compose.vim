@@ -29,6 +29,19 @@ function! docker_compose#api#terminal(...) abort
     nnoremap <buffer> <silent>q :bw!<CR>
 endfunction
 
+" tail logs
+function! docker_compose#api#logs(...) abort
+    let compose_file = 'docker-compose.yaml'
+    if a:0 == 1
+       let compose_file = a:1
+    endif
+
+    if !docker_compose#utils#check#filereadable(compose_file)
+        return
+    endif
+    call docker_compose#api#terminal('-f', compose_file, 'logs')
+endfunction
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
 

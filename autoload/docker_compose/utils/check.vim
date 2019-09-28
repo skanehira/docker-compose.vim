@@ -23,6 +23,15 @@ function! docker_compose#utils#check#executable(cmd) abort
 	return 1
 endfunction
 
+" checking file readable
+function! docker_compose#utils#check#filereadable(file) abort
+    if !filereadable(a:file)
+		call docker_compose#utils#message#err(a:file .. ' is not exist or readable')
+        return 0
+    endif
+    return 1
+endfunction
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
