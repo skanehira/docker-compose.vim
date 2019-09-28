@@ -8,11 +8,16 @@ set cpo&vim
 let s:base_cmd = 'docker-compose '
 
 " wrap docker-compose command
-function! docker_compose#api#execute(args) abort
-    let cmd = s:base_cmd .. a:args
+function! docker_compose#api#execute(...) abort
+    if a:0 is# 0
+		call docker_compose#utils#message#err('there are no args')
+        return
+    endif
+
+    let cmd = s:base_cmd .. join(a:000, ' ')
     let out = systemlist(cmd)
-    if v:shell_error == 0
-        call docker_compose#utils#message#echoerr('failed to execute ' .. cmd)
+    if v:shell_error != 0
+        call docker_compose#utils#message#err('failed to execute: ' .. join([cmd] + out, "\n"))
         return ''
     endif
 
