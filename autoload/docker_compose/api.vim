@@ -34,7 +34,7 @@ function! docker_compose#api#terminal(...) abort
         return
     endif
 
-    execute 'terminal docker-compose ' .. join(a:000, ' ')
+    execute 'terminal ' .. s:base_cmd .. join(a:000, ' ')
     nnoremap <buffer> <silent>q :bw!<CR>
 endfunction
 
