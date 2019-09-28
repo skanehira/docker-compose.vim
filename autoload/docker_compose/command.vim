@@ -15,8 +15,11 @@ endfunction
 
 function! docker_compose#command#ps(...) abort
 	let compose_file = docker_compose#api#compose_file(a:000)
-	let contents = docker_compose#api#execute('-f', compose_file, 'ps')
+    if !docker_compose#utils#check#filereadable(compose_file)
+        return
+    endif
 
+	let contents = docker_compose#api#execute('-f', compose_file, 'ps')
 	if contents is# ''
 		return
 	endif
