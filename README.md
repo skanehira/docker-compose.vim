@@ -4,6 +4,8 @@ This is vim plugin that wrapping docker-compose.
 If you want to manage docker images and containers more,
 you can use [docker.vim](https://github.com/skanehira/docker.vim)
 
+![Imgur](https://imgur.com/8svyqMN.gif)
+
 ## Requirements
 - docker-compose
 - docker cli
