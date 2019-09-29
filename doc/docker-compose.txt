@@ -101,6 +101,11 @@ COMMANDS					*docker-compose-commands*
 :DockerComposePull {file}			*:DockerComposePull*
 	Pull images.
 	This is same as `docker-compose -f {file} pull`
+
+:DockerComposeConfig {file}			*:DockerComposeConfig*
+	Show configs.
+	This is same as `docker-compose -f {file} config`
+
 ------------------------------------------------------------------------------
 KEY-MAPPINGS					*docker-compose-key-mappings*
 
