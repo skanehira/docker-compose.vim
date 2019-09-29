@@ -2,11 +2,11 @@
 " Author: skanehira
 " License: MIT
 
-if exists('g:loaded_docker-compose')
+if exists('g:loaded_docker_compose')
   finish
 endif
 
-let g:loaded_docker-compose = 1
+let g:loaded_docker_compose = 1
 
 let s:save_cpo = &cpo
 set cpo&vim
