@@ -75,6 +75,12 @@ function! docker_compose#command#logs(...) abort
     call docker_compose#api#terminal('-f', compose_file, 'logs')
 endfunction
 
+" update container list
+function! s:update_list(winid, ctx) abort
+    let ctx = s:get_containers(a:ctx.compose_file)
+    call popup_settext(a:winid, ctx.view_contents)
+endfunction
+
 " start container
 function! s:container_start(winid, ctx) abort
     if !docker_compose#utils#check#executable('docker')
@@ -84,12 +90,11 @@ function! s:container_start(winid, ctx) abort
     call docker_compose#utils#message#info('starting ' .. container)
     call docker_compose#api#docker('start', container)
 
-    let ctx = s:get_containers(a:ctx.compose_file)
-
-    call popup_settext(a:winid, ctx.view_contents)
+    call s:update_list(a:winid, a:ctx)
     call docker_compose#utils#message#info('started ' .. container)
 endfunction
 
+" stop container
 function! s:container_stop(winid, ctx) abort
     if !docker_compose#utils#check#executable('docker')
         return
@@ -98,9 +103,7 @@ function! s:container_stop(winid, ctx) abort
     call docker_compose#utils#message#info('stopping ' .. container)
     call docker_compose#api#docker('stop', container)
 
-    let ctx = s:get_containers(a:ctx.compose_file)
-
-    call popup_settext(a:winid, ctx.view_contents)
+    call s:update_list(a:winid, a:ctx)
     call docker_compose#utils#message#info('stopped ' .. container)
 endfunction
 
