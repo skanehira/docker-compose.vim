@@ -74,13 +74,13 @@ COMMANDS					*docker-compose-commands*
 	This is same as `docker-compose -f {file} up`
 
 :DockerComposeDown {file}			*:DockerComposeDown*
-	Stop and remove containers, volumes, networks.
+	Stop and remove containers, networks.
 	This is same as `docker-compose -f {file} down`
 
 :DockerComposeDownAll {file}			*:DockerComposeDownAll*
-	Stop and remove containers, volumes, networs
+	Stop and remove containers, volumes, networks
 	and images, This is same as
-	`docker-compose -f {file} down --rmi all`
+	`docker-compose -f {file} down --rmi all -v`
 
 :DockerComposeStart {file}			*:DockerComposeStart*
 	Start containers.
@@ -93,6 +93,7 @@ COMMANDS					*docker-compose-commands*
 :DockerComposeRestart {file}			*:DockerComposeRestart*
 	Restart containers.
 	This is same as `docker-compose -f {file} restart`
+
 ------------------------------------------------------------------------------
 KEY-MAPPINGS					*docker-compose-key-mappings*
 
