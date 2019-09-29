@@ -21,6 +21,13 @@ function! docker_compose#utils#message#warn(msg) abort
 	echohl None
 endfunction
 
+" echo info message
+function! docker_compose#utils#message#info(msg) abort
+	echohl MoreMsg
+	echo s:msg_prefix .. a:msg
+	echohl None
+endfunction
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
