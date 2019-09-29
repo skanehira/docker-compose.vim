@@ -25,6 +25,7 @@ docker-compose.yaml from the current directory and use it.
 | DockerComposeStop {file}    | docker-compose -f {file} stop           |
 | DockerComposeRestart {file} | docker-compose -f {file} restart        |
 | DockerComposeBuild {file}   | docker-compose -f {file} build          |
+| DockerComposePull {file}    | docker-compose -f {file} pull           |
 
 ## Keybindings
 ### docker compose list

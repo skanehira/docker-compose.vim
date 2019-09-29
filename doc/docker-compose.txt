@@ -98,6 +98,9 @@ COMMANDS					*docker-compose-commands*
 	Build images.
 	This is same as `docker-compose -f {file} build`
 
+:DockerComposePull {file}			*:DockerComposePull*
+	Pull images.
+	This is same as `docker-compose -f {file} pull`
 ------------------------------------------------------------------------------
 KEY-MAPPINGS					*docker-compose-key-mappings*
 
