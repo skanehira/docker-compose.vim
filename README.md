@@ -1,5 +1,8 @@
 # docker-compose.vim
-docker-compose wrap plugin.
+This is vim plugin that wrapping docker-compose.
+
+If you want to manage docker images and containers more,
+you can use [docker.vim](https://github.com/skanehira/docker.vim)
 
 ## Requirements
 - docker-compose
