@@ -72,7 +72,7 @@ function! docker_compose#command#logs(...) abort
     if !docker_compose#utils#check#filereadable(compose_file)
         return
     endif
-    call docker_compose#api#terminal('-f', compose_file, 'logs')
+    call docker_compose#api#terminal('-f', compose_file, 'logs', '-f')
 endfunction
 
 " docker compose up
