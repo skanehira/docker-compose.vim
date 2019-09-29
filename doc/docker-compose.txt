@@ -86,6 +86,10 @@ COMMANDS					*docker-compose-commands*
 	Start containers.
 	This is same as `docker-compose -f {file} start`
 
+:DockerComposeStop {file}			*:DockerComposeStop*
+	Stop containers.
+	This is same as `docker-compose -f {file} stop`
+
 ------------------------------------------------------------------------------
 KEY-MAPPINGS					*docker-compose-key-mappings*
 
