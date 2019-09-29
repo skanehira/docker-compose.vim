@@ -90,6 +90,9 @@ COMMANDS					*docker-compose-commands*
 	Stop containers.
 	This is same as `docker-compose -f {file} stop`
 
+:DockerComposeRestart {file}			*:DockerComposeRestart*
+	Restart containers.
+	This is same as `docker-compose -f {file} restart`
 ------------------------------------------------------------------------------
 KEY-MAPPINGS					*docker-compose-key-mappings*
 

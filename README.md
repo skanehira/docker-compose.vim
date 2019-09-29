@@ -23,6 +23,7 @@ docker-compose.yaml from the current directory and use it.
 | DockerComposeDownAll {file} | docker-compose -f {file} down --rmi all |
 | DockerComposeStart {file}   | docker-compose -f {file} start          |
 | DockerComposeStop {file}    | docker-compose -f {file} stop           |
+| DockerComposeRestart {file} | docker-compose -f {file} restart        |
 
 ## Keybindings
 ### docker compose list
