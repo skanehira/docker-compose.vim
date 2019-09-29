@@ -93,6 +93,15 @@ function! docker_compose#command#down(...) abort
     call docker_compose#api#terminal('-f', compose_file, 'down')
 endfunction
 
+" docker compose down and remove all
+function! docker_compose#command#downall(...) abort
+    let compose_file = docker_compose#api#compose_file(a:000)
+    if !docker_compose#utils#check#filereadable(compose_file)
+        return
+    endif
+    call docker_compose#api#terminal('-f', compose_file, 'down', '--rmi', 'all')
+endfunction
+
 " update container list
 function! s:update_list(winid, ctx) abort
     let ctx = s:get_containers(a:ctx.compose_file)

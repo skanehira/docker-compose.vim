@@ -16,6 +16,7 @@ command! -nargs=? -complete=file DockerComposeLogs call docker_compose#command#l
 command! -nargs=? -complete=file DockerComposeList call docker_compose#command#ps(<f-args>)
 command! -nargs=? -complete=file DockerComposeUp call docker_compose#command#up(<f-args>)
 command! -nargs=? -complete=file DockerComposeDown call docker_compose#command#down(<f-args>)
+command! -nargs=? -complete=file DockerComposeDownAll call docker_compose#command#downall(<f-args>)
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
