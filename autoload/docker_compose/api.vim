@@ -21,6 +21,7 @@ function! docker_compose#api#execute(...) abort
         return ''
     endif
 
+    redraw
     return out
 endfunction
 

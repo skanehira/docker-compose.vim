@@ -90,7 +90,9 @@ function! docker_compose#command#down(...) abort
     if !docker_compose#utils#check#filereadable(compose_file)
         return
     endif
-    call docker_compose#api#terminal('-f', compose_file, 'down')
+    call docker_compose#utils#message#info('downing services...')
+    call docker_compose#api#execute('-f', compose_file, 'down')
+    call docker_compose#utils#message#info('downed services')
 endfunction
 
 " docker compose down and remove all
@@ -99,7 +101,9 @@ function! docker_compose#command#downall(...) abort
     if !docker_compose#utils#check#filereadable(compose_file)
         return
     endif
-    call docker_compose#api#terminal('-f', compose_file, 'down', '--rmi', 'all')
+    call docker_compose#utils#message#info('downing services...')
+    call docker_compose#api#execute('-f', compose_file, 'down', '--rmi', 'all')
+    call docker_compose#utils#message#info('downed services')
 endfunction
 
 " update container list
