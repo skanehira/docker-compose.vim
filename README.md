@@ -35,6 +35,12 @@ docker-compose.yaml from the current directory and use it.
 | DockerComposePull {file}    | docker-compose -f {file} pull              |
 | DockerComposeConfig {file}  | docker-compose -f {file} config            |
 
+## Config
+```vim
+" open terminal way
+let g:docker_compose_open_terminal_way = 'top'
+```
+
 ## Keybindings
 ### container list
 
