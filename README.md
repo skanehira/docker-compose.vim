@@ -1,5 +1,5 @@
 # docker-compose.vim
-This is vim plugin that wrapping docker-compose.
+This is vim plugin that wrapping docker-compose.  
 
 If you want to manage docker images and containers more,
 you can use [docker.vim](https://github.com/skanehira/docker.vim)
@@ -47,10 +47,13 @@ let g:docker_compose_open_terminal_way = 'top'
 ## Keybindings
 ### container list
 
-| key | operation       |
-|-----|-----------------|
-| u   | start contaienr |
-| d   | stop contaienr  |
+| key | operation          |
+|-----|--------------------|
+| u   | start contaienr    |
+| d   | stop contaienr     |
+| j   | next contaienr     |
+| k   | previous contaienr |
+| q   | close window       |
 
 ## Author
 skanehira
