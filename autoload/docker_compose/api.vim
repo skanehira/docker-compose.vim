@@ -10,7 +10,7 @@ let s:base_cmd = 'docker-compose '
 " wrap docker-compose command
 function! docker_compose#api#execute(...) abort
     if a:0 is# 0
-		call docker_compose#utils#message#err('there are no args')
+        call docker_compose#utils#message#err('there are no args')
         return
     endif
 
@@ -28,7 +28,7 @@ endfunction
 " execute docker cli
 function! docker_compose#api#docker(...) abort
     if a:0 is# 0
-		call docker_compose#utils#message#err('there are no args')
+        call docker_compose#utils#message#err('there are no args')
         return
     endif
 
@@ -44,10 +44,10 @@ endfunction
 
 " execute docker-compose in the terminal
 function! docker_compose#api#terminal(...) abort
-	if a:0 == 0
-		call docker_compose#utils#message#err('there are no args')
+    if a:0 == 0
+        call docker_compose#utils#message#err('there are no args')
         return
-	endif
+    endif
 
     if !docker_compose#utils#check#has('terminal')
         return
@@ -65,7 +65,7 @@ function! docker_compose#api#compose_file(...) abort
     let args = a:1
     let compose_file = 'docker-compose.yaml'
     if len(args) >= 1
-       let compose_file = args[0]
+        let compose_file = args[0]
     endif
 
     return compose_file
