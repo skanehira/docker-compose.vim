@@ -63,7 +63,7 @@ endfunction
 function! docker_compose#api#compose_file(...) abort
     let args = a:1
     let compose_file = 'docker-compose.yaml'
-    if len(args) is# 1
+    if len(args) >= 1
        let compose_file = args[0]
     endif
 
