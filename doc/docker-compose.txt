@@ -73,6 +73,15 @@ COMMANDS					*docker-compose-commands*
 	Build and create, up containers.
 	This is same as `docker-compose -f {file} up`
 
+:DockerComposeDown {file}			*:DockerComposeDown*
+	Stop and remove containers, volumes, networks.
+	This is same as `docker-compose -f {file} down`
+
+:DockerComposeDownAll {file}			*:DockerComposeDownAll*
+	Stop and remove containers, volumes, networs
+	and images, This is same as
+	`docker-compose -f {file} down --rmi all`
+
 ------------------------------------------------------------------------------
 KEY-MAPPINGS					*docker-compose-key-mappings*
 

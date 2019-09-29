@@ -32,6 +32,21 @@ monitoring logs
 :DockerComposeLogs {file}
 ```
 
+build, create and start containers.
+```vim
+:DockerComposeUp {file}
+ ```
+
+stop, remove container and voluems, networks.
+```vim
+:DockerComposeDown {file}
+```
+
+stop, remove contaienr and voluems, networks, images
+```vim
+:DockerComposeDownAll {file}
+```
+
 ## Keybindings
 ### docker compose list
 
