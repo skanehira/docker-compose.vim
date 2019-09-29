@@ -33,6 +33,7 @@ monitoring logs
 | key | operation       |
 |-----|-----------------|
 | u   | start contaienr |
+| d   | stop contaienr  |
 
 ## Author
 skanehira

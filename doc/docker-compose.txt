@@ -74,8 +74,11 @@ COMMANDS					*docker-compose-commands*
 ------------------------------------------------------------------------------
 KEY-MAPPINGS					*docker-compose-key-mappings*
 
-u						*docker-compose-list*
+u						*docker-compose-list-u*
 	Start container.
+
+d						*docker-compose-list-d*
+	Stop container.
 
 ------------------------------------------------------------------------------
 FUNCTIONS					*docker-compose-functions*
