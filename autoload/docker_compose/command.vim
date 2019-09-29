@@ -5,32 +5,62 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-function! s:f_ps_filter(id, key) abort
-	if a:key is# 'q'
-		call popup_close(a:id)
-		return 0
-	endif
-	return 1
+function! s:f_ps_filter(ctx, id, key) abort
+    if a:key is# 'q'
+        call popup_close(a:id)
+        return 1
+    elseif a:key is# 'u'
+        call s:container_start(a:id, a:ctx)
+        return 1
+    elseif a:key is# 'j'
+        if a:ctx.select isnot len(a:ctx.contents) - 1
+            let a:ctx.select = a:ctx.select + 1
+        endif
+    elseif a:key is# 'k'
+        if a:ctx.select isnot 0
+            let a:ctx.select = a:ctx.select - 1
+        endif
+    endif
+    return popup_filter_menu(a:id, a:key)
 endfunction
 
+function! s:get_containers(compose_file) abort
+    let result = docker_compose#api#execute('-f', a:compose_file, 'ps')
+    if result is# ''
+        return ''
+    endif
+
+    let title = result[0]
+    let view_contents = result[2:]
+
+    let contents = []
+    for content in view_contents
+        let tmp = split(content, ' ')
+        call add(contents,{
+                    \ 'name': tmp[0]
+                    \ })
+    endfor
+
+    return {
+                \ 'title': substitute(title, ' ', '-', 'g'),
+                \ 'view_contents': view_contents,
+                \ 'contents': contents,
+                \ 'compose_file': a:compose_file,
+                \ 'select': 0,
+                \ }
+endfunction
+
+" get services
 function! docker_compose#command#ps(...) abort
-	let compose_file = docker_compose#api#compose_file(a:000)
+    let compose_file = docker_compose#api#compose_file(a:000)
     if !docker_compose#utils#check#filereadable(compose_file)
         return
     endif
 
-	let contents = docker_compose#api#execute('-f', compose_file, 'ps')
-	if contents is# ''
-		return
-	endif
+    let ctx = s:get_containers(compose_file)
+    let ctx['filter'] = function('s:f_ps_filter', [ctx])
 
-	let ctx = {
-				\ 'filter': function('s:f_ps_filter'),
-				\ 'title': substitute(contents[0], ' ', '-', 'g'),
-				\ 'content': contents[2:],
-				\ }
-
-	call docker_compose#utils#window#create(ctx)
+    call docker_compose#utils#window#create(ctx)
 endfunction
 
 " monitoring logs
@@ -40,6 +70,21 @@ function! docker_compose#command#logs(...) abort
         return
     endif
     call docker_compose#api#terminal('-f', compose_file, 'logs')
+endfunction
+
+" start container
+function! s:container_start(winid, ctx) abort
+    if !docker_compose#utils#check#executable('docker')
+        return
+    endif
+    let container = a:ctx.contents[a:ctx.select].name
+    call docker_compose#utils#message#info('starting ' .. container)
+    call docker_compose#api#docker('start', container)
+
+    let ctx = s:get_containers(a:ctx.compose_file)
+
+    call popup_settext(a:winid, ctx.view_contents)
+    call docker_compose#utils#message#info('started ' .. container)
 endfunction
 
 let &cpo = s:save_cpo

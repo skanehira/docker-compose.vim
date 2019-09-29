@@ -24,6 +24,23 @@ function! docker_compose#api#execute(...) abort
     return out
 endfunction
 
+" execute docker cli
+function! docker_compose#api#docker(...) abort
+    if a:0 is# 0
+		call docker_compose#utils#message#err('there are no args')
+        return
+    endif
+
+    let cmd = 'docker ' .. join(a:000, ' ')
+    let out = systemlist(cmd)
+    if v:shell_error != 0
+        call docker_compose#utils#message#err('failed to execute: ' .. join([cmd] + out, "\n"))
+        return ''
+    endif
+
+    return out
+endfunction
+
 " execute docker-compose in the terminal
 function! docker_compose#api#terminal(...) abort
 	if a:0 == 0
