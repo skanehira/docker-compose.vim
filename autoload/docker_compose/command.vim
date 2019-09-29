@@ -135,7 +135,7 @@ function! docker_compose#command#downall(...) abort
         return
     endif
     call docker_compose#utils#message#info('downing services...')
-    call docker_compose#api#execute('-f', compose_file, 'down', '--rmi', 'all')
+    call docker_compose#api#execute('-f', compose_file, 'down', '--rmi', 'all', '-v')
     call docker_compose#utils#message#info('downed services')
 endfunction
 
