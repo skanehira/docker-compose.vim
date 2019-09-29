@@ -18,8 +18,13 @@ wrap `docker-compose` command.
 
 containers
 ```vim
-" is no speficied {file}, default is find docker-compose.yaml and use it.
+" if no speficied {file}, default is find docker-compose.yaml and use it.
 :DockerComposeList {file}
+```
+
+build, create and run containers
+```vim
+:DockerComposeUp {file}
 ```
 
 monitoring logs
