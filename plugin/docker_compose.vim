@@ -19,6 +19,7 @@ command! -nargs=? -complete=file DockerComposeDown call docker_compose#command#d
 command! -nargs=? -complete=file DockerComposeDownAll call docker_compose#command#downall(<f-args>)
 command! -nargs=? -complete=file DockerComposeStart call docker_compose#command#start(<f-args>)
 command! -nargs=? -complete=file DockerComposeStop call docker_compose#command#stop(<f-args>)
+command! -nargs=? -complete=file DockerComposeRestart call docker_compose#command#restart(<f-args>)
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
