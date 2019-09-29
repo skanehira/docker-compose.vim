@@ -57,7 +57,7 @@ function! docker_compose#api#terminal(...) abort
         return
     endif
 
-    execute 'terminal ' .. s:base_cmd .. join(a:000, ' ')
+    execute get(g:, 'docker_compose_open_terminal_way', 'vert') .. ' terminal ' .. s:base_cmd .. join(a:000, ' ')
     nnoremap <buffer> <silent>q :bw!<CR>
 endfunction
 
