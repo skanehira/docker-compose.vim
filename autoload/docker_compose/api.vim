@@ -25,6 +25,37 @@ function! docker_compose#api#execute(...) abort
     return out
 endfunction
 
+function! s:docker_compose_exit_cb(msg, ch, status) abort
+    if a:status is 0
+        if a:msg isnot# ''
+            call docker_compose#utils#message#info(a:msg)
+        endif
+    else
+        call docker_compose#utils#message#err(join(s:err_msg, "\n"))
+    endif
+endfunction
+
+let s:err_msg = []
+
+function! s:docker_compose_err_cb(ch, msg) abort
+    call add(s:err_msg, a:msg)
+    "call docker_compose#utils#message#err(a:msg)
+endfunction
+
+function! docker_compose#api#async_execute(msg, ...) abort
+    if a:0 is# 0
+        call docker_compose#utils#message#err('there are no args')
+        return
+    endif
+
+    let s:err_msg = []
+    let cmd = [trim(s:base_cmd)] + a:000
+    call job_start(cmd, {
+                \ 'err_cb': function('s:docker_compose_err_cb'),
+                \ 'exit_cb': function('s:docker_compose_exit_cb', [a:msg])
+                \ })
+endfunction
+
 " execute docker cli
 function! docker_compose#api#docker(...) abort
     if a:0 is# 0

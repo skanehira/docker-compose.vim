@@ -109,8 +109,7 @@ function! docker_compose#command#start(...) abort
         return
     endif
     call docker_compose#utils#message#info('starting services...')
-    call docker_compose#api#execute('-f', compose_file, 'start')
-    call docker_compose#utils#message#info('started services')
+    call docker_compose#api#async_execute('started services', '-f', compose_file, 'start')
 endfunction
 
 " docker compose stop
@@ -120,8 +119,7 @@ function! docker_compose#command#stop(...) abort
         return
     endif
     call docker_compose#utils#message#info('stopping services...')
-    call docker_compose#api#execute('-f', compose_file, 'stop')
-    call docker_compose#utils#message#info('stopped services')
+    call docker_compose#api#async_execute('stopped services', '-f', compose_file, 'stop')
 endfunction
 
 " docker compose restart
@@ -131,8 +129,7 @@ function! docker_compose#command#restart(...) abort
         return
     endif
     call docker_compose#utils#message#info('restarting services...')
-    call docker_compose#api#execute('-f', compose_file, 'restart')
-    call docker_compose#utils#message#info('restarted services')
+    call docker_compose#api#async_execute('restarted services', '-f', compose_file, 'restart')
 endfunction
 
 " docker compose down
@@ -142,8 +139,7 @@ function! docker_compose#command#down(...) abort
         return
     endif
     call docker_compose#utils#message#info('downing services...')
-    call docker_compose#api#execute('-f', compose_file, 'down')
-    call docker_compose#utils#message#info('downed services')
+    call docker_compose#api#async_execute('downed services', '-f', compose_file, 'down')
 endfunction
 
 " docker compose down and remove all
@@ -153,8 +149,7 @@ function! docker_compose#command#downall(...) abort
         return
     endif
     call docker_compose#utils#message#info('downing services...')
-    call docker_compose#api#execute('-f', compose_file, 'down', '--rmi', 'all', '-v')
-    call docker_compose#utils#message#info('downed services')
+    call docker_compose#api#async_execute('downed services', '-f', compose_file, 'down', '--rmi', 'all', '-v')
 endfunction
 
 " docker compose config
