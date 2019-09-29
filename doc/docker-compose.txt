@@ -82,6 +82,10 @@ COMMANDS					*docker-compose-commands*
 	and images, This is same as
 	`docker-compose -f {file} down --rmi all`
 
+:DockerComposeStart {file}			*:DockerComposeStart*
+	Start containers.
+	This is same as `docker-compose -f {file} start`
+
 ------------------------------------------------------------------------------
 KEY-MAPPINGS					*docker-compose-key-mappings*
 
