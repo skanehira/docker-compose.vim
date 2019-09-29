@@ -1,7 +1,7 @@
 # docker-compose.vim
 docker-compose wrap plugin.
 
-# Installtion
+## Installtion
 e.g dein.vim
 
 ```toml
@@ -9,7 +9,7 @@ e.g dein.vim
 repo = 'skanehira/docker-compose.vim'
 ```
 
-# Usage
+## Usage
 wrap `docker-compose` command.
 ```vim
 " this is same as docker-compose up"
@@ -27,5 +27,12 @@ monitoring logs
 :DockerComposeLogs {file}
 ```
 
-# Author
+## Keybindings
+### docker compose list
+
+| key | operation       |
+|-----|-----------------|
+| u   | start contaienr |
+
+## Author
 skanehira
