@@ -28,7 +28,7 @@ docker-compose.yaml from the current directory and use it.
 | DockerComposePull {file}    | docker-compose -f {file} pull           |
 
 ## Keybindings
-### docker compose list
+### container list
 
 | key | operation       |
 |-----|-----------------|
