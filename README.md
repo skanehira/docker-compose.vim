@@ -9,6 +9,7 @@ you can use [docker.vim](https://github.com/skanehira/docker.vim)
 ## Requirements
 - docker-compose
 - docker cli
+- Vim >= 8.1.2021
 
 ## Installtion
 e.g dein.vim
