@@ -12,6 +12,9 @@ function! s:f_ps_filter(ctx, id, key) abort
     elseif a:key is# 'u'
         call s:container_start(a:id, a:ctx)
         return 1
+    elseif a:key is# 'd'
+        call s:container_stop(a:id, a:ctx)
+        return 1
     elseif a:key is# 'j'
         if a:ctx.select isnot len(a:ctx.contents) - 1
             let a:ctx.select = a:ctx.select + 1
@@ -85,6 +88,20 @@ function! s:container_start(winid, ctx) abort
 
     call popup_settext(a:winid, ctx.view_contents)
     call docker_compose#utils#message#info('started ' .. container)
+endfunction
+
+function! s:container_stop(winid, ctx) abort
+    if !docker_compose#utils#check#executable('docker')
+        return
+    endif
+    let container = a:ctx.contents[a:ctx.select].name
+    call docker_compose#utils#message#info('stopping ' .. container)
+    call docker_compose#api#docker('stop', container)
+
+    let ctx = s:get_containers(a:ctx.compose_file)
+
+    call popup_settext(a:winid, ctx.view_contents)
+    call docker_compose#utils#message#info('stopped ' .. container)
 endfunction
 
 let &cpo = s:save_cpo
