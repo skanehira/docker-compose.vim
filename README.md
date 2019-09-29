@@ -1,6 +1,10 @@
 # docker-compose.vim
 docker-compose wrap plugin.
 
+## Requirements
+- docker-compose
+- docker cli
+
 ## Installtion
 e.g dein.vim
 
