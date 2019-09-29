@@ -95,6 +95,17 @@ function! docker_compose#command#start(...) abort
     call docker_compose#utils#message#info('started services')
 endfunction
 
+" docker compose stop
+function! docker_compose#command#stop(...) abort
+    let compose_file = docker_compose#api#compose_file(a:000)
+    if !docker_compose#utils#check#filereadable(compose_file)
+        return
+    endif
+    call docker_compose#utils#message#info('stopping services...')
+    call docker_compose#api#execute('-f', compose_file, 'stop')
+    call docker_compose#utils#message#info('stopped services')
+endfunction
+
 " docker compose down
 function! docker_compose#command#down(...) abort
     let compose_file = docker_compose#api#compose_file(a:000)
