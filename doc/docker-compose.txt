@@ -94,6 +94,10 @@ COMMANDS					*docker-compose-commands*
 	Restart containers.
 	This is same as `docker-compose -f {file} restart`
 
+:DockerComposeBuild {file}			*:DockerComposeBuild*
+	Build images.
+	This is same as `docker-compose -f {file} build`
+
 ------------------------------------------------------------------------------
 KEY-MAPPINGS					*docker-compose-key-mappings*
 
