@@ -6,8 +6,7 @@ if exists('g:loaded_docker-compose')
   finish
 endif
 
-" TODO remove comment out
-"let g:loaded_docker-compose = 1
+let g:loaded_docker-compose = 1
 
 let s:save_cpo = &cpo
 set cpo&vim
