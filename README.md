@@ -49,10 +49,10 @@ let g:docker_compose_open_terminal_way = 'top'
 
 | key | operation          |
 |-----|--------------------|
-| u   | start contaienr    |
-| d   | stop contaienr     |
-| j   | next contaienr     |
-| k   | previous contaienr |
+| u   | start container    |
+| d   | stop container     |
+| j   | next container     |
+| k   | previous container |
 | q   | close window       |
 
 ## Author
