@@ -23,6 +23,7 @@ command! -nargs=? -complete=file DockerComposeRestart call docker_compose#comman
 command! -nargs=? -complete=file DockerComposeBuild call docker_compose#command#build(<f-args>)
 command! -nargs=? -complete=file DockerComposePull call docker_compose#command#pull(<f-args>)
 command! -nargs=? -complete=file DockerComposeConfig call docker_compose#command#config(<f-args>)
+command! -nargs=? -complete=file DockerComposeServices call docker_compose#command#services(<f-args>)
 
 let &cpo = s:save_cpo
 unlet s:save_cpo

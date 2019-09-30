@@ -162,6 +162,48 @@ function! docker_compose#command#config(...) abort
     set ft=yaml
 endfunction
 
+function! s:f_services_filter(ctx, id, key) abort
+    if a:key is# 'q'
+        call popup_close(a:id)
+        return 1
+    endif
+    return popup_filter_menu(a:id, a:key)
+endfunction
+
+" docker compose ps --services
+function! docker_compose#command#services(...) abort
+    let compose_file = docker_compose#api#compose_file(a:000)
+    if !docker_compose#utils#check#filereadable(compose_file)
+        return
+    endif
+    let result = docker_compose#api#execute('-f', compose_file, 'ps', '--services')
+    if result is# ''
+        return
+    endif
+
+    let title = 'services'
+    let view_contents = result
+
+    let contents = []
+    for service in view_contents
+        call add(contents,{
+                    \ 'name': service
+                    \ })
+    endfor
+
+    let ctx = {
+                \ 'title': title,
+                \ 'view_contents': view_contents,
+                \ 'contents': contents,
+                \ 'compose_file': compose_file,
+                \ 'select': 0,
+                \ }
+
+    let ctx['filter'] = function('s:f_services_filter', [ctx])
+
+    call docker_compose#utils#window#create(ctx)
+endfunction
+
 " update container list
 function! s:update_list(winid, ctx) abort
     let ctx = s:get_containers(a:ctx.compose_file)
