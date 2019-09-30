@@ -106,6 +106,10 @@ COMMANDS					*docker-compose-commands*
 	Show configs.
 	This is same as `docker-compose -f {file} config`
 
+:DockerComposeServices {file}			*:DockerComposeServices*
+	Show services.
+	This is same as `docker-compose -f {file} ps --services`
+
 ------------------------------------------------------------------------------
 KEY-MAPPINGS					*docker-compose-key-mappings*
 
