@@ -166,19 +166,43 @@ function! s:f_services_filter(ctx, id, key) abort
     if a:key is# 'q'
         call popup_close(a:id)
         return 1
+    elseif a:key is# 'j'
+        if a:ctx.select isnot len(a:ctx.contents) - 1
+            let a:ctx.select = a:ctx.select + 1
+        endif
+    elseif a:key is# 'k'
+        if a:ctx.select isnot 0
+            let a:ctx.select = a:ctx.select - 1
+        endif
+    elseif a:key is# 'u'
+        call s:start_service(a:id, a:ctx)
     endif
     return popup_filter_menu(a:id, a:key)
 endfunction
 
-" docker compose ps --services
-function! docker_compose#command#services(...) abort
-    let compose_file = docker_compose#api#compose_file(a:000)
-    if !docker_compose#utils#check#filereadable(compose_file)
+function! s:start_service(winid, ctx) abort
+    if !docker_compose#utils#check#executable('docker')
         return
     endif
-    let result = docker_compose#api#execute('-f', compose_file, 'ps', '--services')
+    let service = a:ctx.contents[a:ctx.select].name
+    call docker_compose#utils#message#info('starting ' .. service)
+    call docker_compose#api#execute('-f', a:ctx.compose_file, 'start', service)
+    call docker_compose#utils#message#info('started ' .. service)
+endfunction
+
+" update container list
+function! s:update_services(winid, ctx) abort
+    let ctx = s:get_services(a:ctx.compose_file)
+    call popup_settext(a:winid, ctx.view_contents)
+endfunction
+
+function! s:get_services(compose_file) abort
+    if !docker_compose#utils#check#filereadable(a:compose_file)
+        return {}
+    endif
+    let result = docker_compose#api#execute('-f', a:compose_file, 'ps', '--services')
     if result is# ''
-        return
+        return {}
     endif
 
     let title = 'services'
@@ -191,16 +215,24 @@ function! docker_compose#command#services(...) abort
                     \ })
     endfor
 
-    let ctx = {
+    return {
                 \ 'title': title,
                 \ 'view_contents': view_contents,
                 \ 'contents': contents,
-                \ 'compose_file': compose_file,
+                \ 'compose_file': a:compose_file,
                 \ 'select': 0,
                 \ }
+endfunction
+
+" docker compose ps --services
+function! docker_compose#command#services(...) abort
+    let compose_file = docker_compose#api#compose_file(a:000)
+    let ctx = s:get_services(compose_file)
+    if empty(ctx)
+        return
+    endif
 
     let ctx['filter'] = function('s:f_services_filter', [ctx])
-
     call docker_compose#utils#window#create(ctx)
 endfunction
 
