@@ -176,7 +176,7 @@ function! s:f_services_filter(ctx, id, key) abort
         endif
     elseif a:key is# 'u'
         call s:start_service(a:id, a:ctx)
-    elseif a:key is# 'd'
+    elseif a:key is# 's'
         call s:stop_service(a:id, a:ctx)
     endif
     return popup_filter_menu(a:id, a:key)
