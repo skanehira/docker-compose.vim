@@ -56,5 +56,15 @@ let g:docker_compose_open_terminal_way = 'top'
 | k   | previous container |
 | q   | close window       |
 
+### services
+
+| key | operation        |
+|-----|------------------|
+| u   | start service    |
+| s   | stop service     |
+| j   | next service     |
+| k   | previous service |
+| q   | close window     |
+
 ## Author
 skanehira

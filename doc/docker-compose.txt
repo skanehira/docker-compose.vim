@@ -119,6 +119,12 @@ u						*docker-compose-list-u*
 d						*docker-compose-list-d*
 	Stop container.
 
+u						*docker-compose-services-u*
+	Start service.
+
+s						*docker-compose-services-s*
+	Stop service.
+
 ------------------------------------------------------------------------------
 FUNCTIONS					*docker-compose-functions*
 
