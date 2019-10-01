@@ -176,6 +176,8 @@ function! s:f_services_filter(ctx, id, key) abort
         endif
     elseif a:key is# 'u'
         call s:start_service(a:id, a:ctx)
+    elseif a:key is# 'd'
+        call s:stop_service(a:id, a:ctx)
     endif
     return popup_filter_menu(a:id, a:key)
 endfunction
@@ -188,6 +190,16 @@ function! s:start_service(winid, ctx) abort
     call docker_compose#utils#message#info('starting ' .. service)
     call docker_compose#api#execute('-f', a:ctx.compose_file, 'start', service)
     call docker_compose#utils#message#info('started ' .. service)
+endfunction
+
+function! s:stop_service(winid, ctx) abort
+    if !docker_compose#utils#check#executable('docker-compose')
+        return
+    endif
+    let service = a:ctx.contents[a:ctx.select].name
+    call docker_compose#utils#message#info('stopping ' .. service)
+    call docker_compose#api#execute('-f', a:ctx.compose_file, 'stop', service)
+    call docker_compose#utils#message#info('stopped ' .. service)
 endfunction
 
 " update container list
