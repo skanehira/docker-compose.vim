@@ -181,7 +181,7 @@ function! s:f_services_filter(ctx, id, key) abort
 endfunction
 
 function! s:start_service(winid, ctx) abort
-    if !docker_compose#utils#check#executable('docker')
+    if !docker_compose#utils#check#executable('docker-compose')
         return
     endif
     let service = a:ctx.contents[a:ctx.select].name
