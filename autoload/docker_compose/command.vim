@@ -162,6 +162,16 @@ function! docker_compose#command#config(...) abort
     set ft=yaml
 endfunction
 
+" docker compose create (same as up --no-start)
+function! docker_compose#command#create(...) abort
+    let compose_file = docker_compose#api#compose_file(a:000)
+    if !docker_compose#utils#check#filereadable(compose_file)
+        return
+    endif
+    call docker_compose#utils#message#info('creating services...')
+    call docker_compose#api#async_execute('created services', '-f', compose_file, 'up', '--no-start')
+endfunction
+
 function! s:f_services_filter(ctx, id, key) abort
     if a:key is# 'q'
         call popup_close(a:id)
