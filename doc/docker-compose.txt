@@ -110,6 +110,10 @@ COMMANDS					*docker-compose-commands*
 	Show services.
 	This is same as `docker-compose -f {file} ps --services`
 
+:DockerComposeCreate {file}			*:DockerComposeCreate*
+	Create services.
+	This is same as `docker-compose -f {file} up --no-start`
+
 ------------------------------------------------------------------------------
 KEY-MAPPINGS					*docker-compose-key-mappings*
 

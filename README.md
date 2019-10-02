@@ -50,6 +50,7 @@ If `{file}` is not specified, the plugin will find
 | `DockerComposePull {file}`     | `docker-compose -f {file} pull`              |
 | `DockerComposeConfig {file}`   | `docker-compose -f {file} config`            |
 | `DockerComposeServices {file}` | `docker-compose -f {file} services`          |
+| `DockerComposeCreate {file}`   | `docker-compose -f {file} up --no-start`     |
 
 ## Config
 ```vim
