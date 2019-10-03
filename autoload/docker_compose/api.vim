@@ -39,7 +39,6 @@ let s:err_msg = []
 
 function! s:docker_compose_err_cb(ch, msg) abort
     call add(s:err_msg, a:msg)
-    "call docker_compose#utils#message#err(a:msg)
 endfunction
 
 function! docker_compose#api#async_execute(msg, ...) abort
