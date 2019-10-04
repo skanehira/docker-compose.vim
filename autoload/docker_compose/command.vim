@@ -172,6 +172,15 @@ function! docker_compose#command#create(...) abort
     call docker_compose#api#async_execute('created services', '-f', compose_file, 'up', '--no-start')
 endfunction
 
+function! docker_compose#command#remove(...) abort
+    let compose_file = docker_compose#api#compose_file(a:000)
+    if !docker_compose#utils#check#filereadable(compose_file)
+        return
+    endif
+    call docker_compose#utils#message#info('removing services...')
+    call docker_compose#api#async_execute('removed services', '-f', compose_file, 'rm', '-f')
+endfunction
+
 function! s:f_services_filter(ctx, id, key) abort
     if a:key is# 'q'
         call popup_close(a:id)

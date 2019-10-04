@@ -25,6 +25,7 @@ command! -nargs=? -complete=file DockerComposePull call docker_compose#command#p
 command! -nargs=? -complete=file DockerComposeConfig call docker_compose#command#config(<f-args>)
 command! -nargs=? -complete=file DockerComposeServices call docker_compose#command#services(<f-args>)
 command! -nargs=? -complete=file DockerComposeCreate call docker_compose#command#create(<f-args>)
+command! -nargs=? -complete=file DockerComposeRemove call docker_compose#command#remove(<f-args>)
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
