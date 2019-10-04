@@ -51,6 +51,7 @@ If `{file}` is not specified, the plugin will find
 | `DockerComposeConfig {file}`   | `docker-compose -f {file} config`            |
 | `DockerComposeServices {file}` | `docker-compose -f {file} services`          |
 | `DockerComposeCreate {file}`   | `docker-compose -f {file} up --no-start`     |
+| `DockerComposeRemove {file}`   | `docker-compose -f {file} rm -f`             |
 
 ## Config
 ```vim

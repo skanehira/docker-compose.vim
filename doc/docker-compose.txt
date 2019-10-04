@@ -114,6 +114,10 @@ COMMANDS					*docker-compose-commands*
 	Create services.
 	This is same as `docker-compose -f {file} up --no-start`
 
+:DockerComposeRemove {file}			*:DockerComposeRemove*
+	Create services.
+	This is same as `docker-compose -f {file} rm -f`
+
 ------------------------------------------------------------------------------
 KEY-MAPPINGS					*docker-compose-key-mappings*
 
