@@ -55,8 +55,9 @@ endfunction
 
 " get services
 function! docker_compose#command#ps(...) abort
-    let compose_file = docker_compose#api#compose_file(a:000)
-    if !docker_compose#utils#check#filereadable(compose_file)
+    let [compose_file, readable] = docker_compose#api#compose_file(a:000)
+    if !readable
+        call docker_compose#utils#message#err(compose_file .. ' is not exist or readable')
         return
     endif
 
@@ -68,8 +69,9 @@ endfunction
 
 " monitoring logs
 function! docker_compose#command#logs(...) abort
-    let compose_file = docker_compose#api#compose_file(a:000)
-    if !docker_compose#utils#check#filereadable(compose_file)
+    let [compose_file, readable] = docker_compose#api#compose_file(a:000)
+    if !readable
+        call docker_compose#utils#message#err(compose_file .. ' is not exist or readable')
         return
     endif
     call docker_compose#api#terminal('-f', compose_file, 'logs', '-f')
@@ -77,8 +79,9 @@ endfunction
 
 " docker compose up
 function! docker_compose#command#up(...) abort
-    let compose_file = docker_compose#api#compose_file(a:000)
-    if !docker_compose#utils#check#filereadable(compose_file)
+    let [compose_file, readable] = docker_compose#api#compose_file(a:000)
+    if !readable
+        call docker_compose#utils#message#err(compose_file .. ' is not exist or readable')
         return
     endif
     call docker_compose#api#terminal('-f', compose_file, 'up')
@@ -86,8 +89,9 @@ endfunction
 
 " docker compose pull
 function! docker_compose#command#pull(...) abort
-    let compose_file = docker_compose#api#compose_file(a:000)
-    if !docker_compose#utils#check#filereadable(compose_file)
+    let [compose_file, readable] = docker_compose#api#compose_file(a:000)
+    if !readable
+        call docker_compose#utils#message#err(compose_file .. ' is not exist or readable')
         return
     endif
     call docker_compose#api#terminal('-f', compose_file, 'pull')
@@ -95,8 +99,9 @@ endfunction
 
 " docker compose build
 function! docker_compose#command#build(...) abort
-    let compose_file = docker_compose#api#compose_file(a:000)
-    if !docker_compose#utils#check#filereadable(compose_file)
+    let [compose_file, readable] = docker_compose#api#compose_file(a:000)
+    if !readable
+        call docker_compose#utils#message#err(compose_file .. ' is not exist or readable')
         return
     endif
     call docker_compose#api#terminal('-f', compose_file, 'build')
@@ -104,8 +109,9 @@ endfunction
 
 " docker compose start
 function! docker_compose#command#start(...) abort
-    let compose_file = docker_compose#api#compose_file(a:000)
-    if !docker_compose#utils#check#filereadable(compose_file)
+    let [compose_file, readable] = docker_compose#api#compose_file(a:000)
+    if !readable
+        call docker_compose#utils#message#err(compose_file .. ' is not exist or readable')
         return
     endif
     call docker_compose#utils#message#info('starting services...')
@@ -114,8 +120,9 @@ endfunction
 
 " docker compose stop
 function! docker_compose#command#stop(...) abort
-    let compose_file = docker_compose#api#compose_file(a:000)
-    if !docker_compose#utils#check#filereadable(compose_file)
+    let [compose_file, readable] = docker_compose#api#compose_file(a:000)
+    if !readable
+        call docker_compose#utils#message#err(compose_file .. ' is not exist or readable')
         return
     endif
     call docker_compose#utils#message#info('stopping services...')
@@ -124,8 +131,9 @@ endfunction
 
 " docker compose restart
 function! docker_compose#command#restart(...) abort
-    let compose_file = docker_compose#api#compose_file(a:000)
-    if !docker_compose#utils#check#filereadable(compose_file)
+    let [compose_file, readable] = docker_compose#api#compose_file(a:000)
+    if !readable
+        call docker_compose#utils#message#err(compose_file .. ' is not exist or readable')
         return
     endif
     call docker_compose#utils#message#info('restarting services...')
@@ -134,8 +142,9 @@ endfunction
 
 " docker compose down
 function! docker_compose#command#down(...) abort
-    let compose_file = docker_compose#api#compose_file(a:000)
-    if !docker_compose#utils#check#filereadable(compose_file)
+    let [compose_file, readable] = docker_compose#api#compose_file(a:000)
+    if !readable
+        call docker_compose#utils#message#err(compose_file .. ' is not exist or readable')
         return
     endif
     call docker_compose#utils#message#info('downing services...')
@@ -144,8 +153,9 @@ endfunction
 
 " docker compose down and remove all
 function! docker_compose#command#downall(...) abort
-    let compose_file = docker_compose#api#compose_file(a:000)
-    if !docker_compose#utils#check#filereadable(compose_file)
+    let [compose_file, readable] = docker_compose#api#compose_file(a:000)
+    if !readable
+        call docker_compose#utils#message#err(compose_file .. ' is not exist or readable')
         return
     endif
     call docker_compose#utils#message#info('downing services...')
@@ -154,8 +164,9 @@ endfunction
 
 " docker compose config
 function! docker_compose#command#config(...) abort
-    let compose_file = docker_compose#api#compose_file(a:000)
-    if !docker_compose#utils#check#filereadable(compose_file)
+    let [compose_file, readable] = docker_compose#api#compose_file(a:000)
+    if !readable
+        call docker_compose#utils#message#err(compose_file .. ' is not exist or readable')
         return
     endif
     call docker_compose#api#terminal('-f', compose_file, 'config')
@@ -164,8 +175,9 @@ endfunction
 
 " docker compose create (same as up --no-start)
 function! docker_compose#command#create(...) abort
-    let compose_file = docker_compose#api#compose_file(a:000)
-    if !docker_compose#utils#check#filereadable(compose_file)
+    let [compose_file, readable] = docker_compose#api#compose_file(a:000)
+    if !readable
+        call docker_compose#utils#message#err(compose_file .. ' is not exist or readable')
         return
     endif
     call docker_compose#utils#message#info('creating services...')
@@ -173,8 +185,9 @@ function! docker_compose#command#create(...) abort
 endfunction
 
 function! docker_compose#command#remove(...) abort
-    let compose_file = docker_compose#api#compose_file(a:000)
-    if !docker_compose#utils#check#filereadable(compose_file)
+    let [compose_file, readable] = docker_compose#api#compose_file(a:000)
+    if !readable
+        call docker_compose#utils#message#err(compose_file .. ' is not exist or readable')
         return
     endif
     call docker_compose#utils#message#info('removing services...')
@@ -257,7 +270,12 @@ endfunction
 
 " docker compose ps --services
 function! docker_compose#command#services(...) abort
-    let compose_file = docker_compose#api#compose_file(a:000)
+    let [compose_file, readable] = docker_compose#api#compose_file(a:000)
+    if !readable
+        call docker_compose#utils#message#err(compose_file .. ' is not exist or readable')
+        return
+    endif
+
     let ctx = s:get_services(compose_file)
     if empty(ctx)
         return

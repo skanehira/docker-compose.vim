@@ -93,12 +93,22 @@ endfunction
 
 function! docker_compose#api#compose_file(...) abort
     let args = a:1
-    let compose_file = 'docker-compose.yaml'
-    if len(args) >= 1
-        let compose_file = args[0]
+
+    if len(args) > 0
+        let file = args[0]
+        if filereadable(file)
+            return [file, 1]
+        endif
+        return [file, 0]
     endif
 
-    return compose_file
+    for f in ['docker-compose.yaml', 'docker-compose.yml']
+        if filereadable(f)
+            return [f, 1]
+        endif
+    endfor
+
+    return ['docker-compose.yaml or docker-compose.yml', 0]
 endfunction
 
 let &cpo = s:save_cpo
