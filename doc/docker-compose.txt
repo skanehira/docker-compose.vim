@@ -52,6 +52,11 @@ USAGE						*docker-compose-usage*
 ==============================================================================
 INTERFACE					*docker-compose-interface*
 
+VARIABLES					*docker-variables*
+
+let g:docker_compose_open_terminal_way		*g:docker_compose_open_terminal_way*
+	Open termianl way.
+	Default value is 'vert'
 ------------------------------------------------------------------------------
 COMMANDS					*docker-compose-commands*
 

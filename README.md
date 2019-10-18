@@ -33,7 +33,7 @@ Then run:
 
 ## Usage
 If `{file}` is not specified, the plugin will find
-`docker-compose.yaml` from the current directory and use it.
+`docker-compose.yaml` or `docker-compose.yml` from the current directory and use it.
 
 | vim ex command                 | docker-compose command                       |
 |--------------------------------|----------------------------------------------|
