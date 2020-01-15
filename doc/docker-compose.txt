@@ -61,7 +61,7 @@ let g:docker_compose_open_terminal_way		*g:docker_compose_open_terminal_way*
 COMMANDS					*docker-compose-commands*
 
 :DockerCompose {args}				*:DockerCompose*
-	This is wrap *docker-compose* command.
+	This is wrap `docker-compose` command.
 	e.g. `:DockerCompose ps` is same as `docker-compose ps`
 
 :DockerComposeLogs {file}			*:DockerComposeLogs*
