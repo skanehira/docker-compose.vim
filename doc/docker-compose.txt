@@ -52,7 +52,7 @@ USAGE						*docker-compose-usage*
 ==============================================================================
 INTERFACE					*docker-compose-interface*
 
-VARIABLES					*docker-variables*
+VARIABLES					*docker-compose-variables*
 
 let g:docker_compose_open_terminal_way		*g:docker_compose_open_terminal_way*
 	Open termianl way.
