@@ -1,3 +1,4 @@
+# This Repository is no longer to maintenanced, please use [denops-docker.vim](https://github.com/skanehira/denops-docker.vim) instead.
 # docker-compose.vim
 This is vim plugin that wraps docker-compose.
 
